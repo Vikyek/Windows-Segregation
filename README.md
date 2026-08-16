@@ -97,3 +97,8 @@ Standard user directories generated natively by Windows or Windows-only desktop 
 ### 3. (Optional) Executable Binaries
 * `.exe` / `.dll` (Can be included using the `-b` / `--binaries` options in the CLI, or by checking the "Include Compiled Windows Binaries" checkbox in the GUI/Web UI).
 * *Note: Coding projects (e.g., directories containing `.git`, `node_modules`, Unity projects `Library` or `obj` folders) are automatically bypassed during recursive binary scanning to prevent breaking development environment structures.*
+
+---
+
+## Part of a Larger Collection
+This project is part of the **[Thunar-Action-Collection](https://github.com/Vikyek/Thunar-Action-Collection)**—a curated collection of custom Thunar action scripts and utilities designed to enhance the Thunar File Manager on Linux. Visit the collection repository for other useful actions and full setup guides.

@@ -1,10 +1,29 @@
 # Windows-Segregation
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 An elegant, multi-interface Python utility designed to scan folders recursively, identify strictly Windows-specific files and directories, and automatically segregate them into a dedicated `Windows/` folder.
 
 This utility is extremely useful when clean, cross-platform workspaces (e.g. shared via OneDrive or Git repositories) need to be purged of Windows OS configurations, shortcuts, and application caches while preserving their hierarchy.
 
-## Interfaces Available
+---
+
+## 📋 Requirements & Dependencies
+
+- **Python:** Python 3.8+
+- **System Utilities:** `libnotify` (`notify-send` for desktop notification alerts)
+- **GUI & Web Dependencies:**
+  - `python-tkinter` (standard library for standalone desktop GUI)
+  - `Flask>=2.0.0` (for local Web Dashboard, see `requirements.txt`)
+
+Install on Arch Linux:
+```bash
+sudo pacman -S python python-flask libnotify tk
+```
+
+---
+
+## 🌟 Interfaces Available
 
 We provide three different ways to interact with the segregation engine:
 
@@ -16,42 +35,47 @@ We provide three different ways to interact with the segregation engine:
 
 ## 🚀 Installation & Setup
 
-Ensure you have Python 3 installed. Since the core logic and Desktop GUI utilize Python's built-in libraries (`tkinter`, `shutil`, `pathlib`, etc.), you only need to install `Flask` if you wish to run the Web Dashboard.
-
+### Automated Installation
 ```bash
-# Clone or move to the project folder
+git clone https://github.com/Vikyek/Windows-Segregation.git
 cd Windows-Segregation
+chmod +x install.sh
+./install.sh
+```
 
-# (Optional) Install Flask for the Web Dashboard
+### Manual Installation
+```bash
+cd Windows-Segregation
 pip install -r requirements.txt
 ```
 
 ---
 
-## 💻 Running the Interfaces
+## 💻 Running the Interfaces & Usage Examples
 
 ### 1. Command Line Interface (CLI)
 Run the script passing the target directory as an argument:
 
 ```bash
 # Basic run on current directory
-python cli.py
+windows-segregation
 
 # Scan specific folder
-python cli.py /path/to/target/directory
+windows-segregation /path/to/target/directory
 
 # Include compiled Windows binaries (.exe, .dll)
-python cli.py /path/to/target/directory --binaries
+windows-segregation /path/to/target/directory --binaries
 
 # Run a simulation/trial without moving files (Dry Run)
-python cli.py /path/to/target/directory --dry-run
+windows-segregation /path/to/target/directory --dry-run
 ```
 
 ### 2. Standalone Desktop GUI
 Launch the native desktop window:
 
 ```bash
-python gui.py
+windows-segregation-gui
+# Or: python3 gui.py
 ```
 *Simply browse to select your directory, click **Scan Directory**, review the listed items, and click **Segregate Items** to clean it up.*
 
@@ -59,18 +83,19 @@ python gui.py
 Launch the Flask server:
 
 ```bash
-python web.py
+windows-segregation-web
+# Or: python3 web.py
 ```
 Once started:
 1. Open your browser and navigate to **[http://localhost:5000](http://localhost:5000)**.
 2. Enter the folder path you want to scan.
-3. Review files in a gorgeous responsive dashboard before executing segregation.
+3. Review files in a responsive dashboard before executing segregation.
 
 ---
 
 ## 🔍 How It Decides What Is Windows-Only
 
-The segregator follows default rules to identify files. You can modify these settings directly in the `segregator/core.py` default config block:
+The segregator follows default rules to identify files:
 
 ### 1. Strictly Windows-Only Extensions
 Files with these suffixes are automatically selected:
@@ -100,5 +125,10 @@ Standard user directories generated natively by Windows or Windows-only desktop 
 
 ---
 
-## Part of a Larger Collection
+## 🔗 Part of a Larger Collection
 This project is part of the **[Thunar-Action-Collection](https://github.com/Vikyek/Thunar-Action-Collection)**—a curated collection of custom Thunar action scripts and utilities designed to enhance the Thunar File Manager on Linux. Visit the collection repository for other useful actions and full setup guides.
+
+---
+
+## 📄 License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
